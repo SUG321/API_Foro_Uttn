@@ -8,11 +8,12 @@ const perfilSchema = new mongoose.Schema({
 
 // Esquema del usuario
 const UserSchema = new mongoose.Schema({
-  apodo: {type: String, default: 'Usuario generico'},
+  id: {type: String},
+  apodo: {type: String, default: 'Usuario Nuevo'},
   nombre: { type: String },
   email: { type: String, required: true, unique: true },
   contraseña: { type: String, required: true },
-  rol: { type: String, default: 'estudiante' },
+  admin: { type: String, default: 'estudiante' },
   fecha_registro: { type: Date, default: Date.now },
   perfil: perfilSchema,
   preguntas_publicadas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pregunta' }],

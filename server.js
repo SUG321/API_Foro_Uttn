@@ -30,8 +30,6 @@ app.post('/login', async (req, res) => {
         // Buscar el usuario por email
         const user = await User.findOne({ email: email });
 
-        console.log(user);
-
         if (user) {
 
             let isMatch;
@@ -39,19 +37,16 @@ app.post('/login', async (req, res) => {
             // Comparar la contraseña cifrada
             if (contraseña == user.contraseña) { isMatch = true } else { isMatch = false };
 
-            console.log("contraseña: ", contraseña);
-            console.log("contraseñaUser: ", user.contraseña);
-            console.log("isMatch: ", isMatch);
-
             if (isMatch == true) {
                 // Si la contraseña es correcta, devolver la información del usuario (sin la contraseña)
                 res.json({
                     success: true,
                     user: {
+                        id: user._id,
+                        apodo: user.apodo,
                         nombre: user.nombre,
                         email: user.email,
-                        rol: user.rol,
-                        perfil: user.perfil,
+                        admin: user.admin
                     },
                 });
             } else {
@@ -84,15 +79,25 @@ app.post('/register', async (req, res) => {
             apodo,
             email,
             contraseña,  // Contraseña tal como está
-            rol: 'estudiante',
-            fecha_registro: ""
+            admin: false,
+            fecha_registro: Date.now()
         });
 
         // Guardar el usuario en la base de datos
         await newUser.save();
 
+        // Búsqueda del nuevo usuario creado
+        const user = await User.findOne({ email: email });
+
         // Responder con un mensaje de éxito
-        res.json({ success: true, message: 'Usuario registrado exitosamente' });
+        res.json({
+            success: true,
+            message: 'Usuario registrado exitosamente',
+            user: {
+                id: user._id
+            }
+        });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
