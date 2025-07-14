@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const User = require('./Models/User');  // Asegúrate de que la ruta sea correcta
+const User = require('./Models/User');
+const Post = require('./Models/Post');
 
 // Crear una instancia de Express
 const app = express();
@@ -103,6 +104,24 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ success: false, message: 'Error en el servidor' });
     }
 });
+
+
+// Ruta para obtener todos los posts con la información del usuario
+app.get('/posts', async (req, res) => {
+    try {
+        const user = await User.findById(Post.usuario_id);
+
+
+
+        const posts = await Post.find();
+        res.json(posts); 
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error en el servidor' });
+    }
+});
+
 
 // Iniciar el servidor
 app.listen(PORT, () => {
