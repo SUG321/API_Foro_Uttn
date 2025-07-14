@@ -124,7 +124,7 @@ app.get('/posts', async (req, res) => {
                 titulo: post.titulo,
                 contenido: post.contenido,
                 pub_date: formattedDate,
-                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
+                respuestas: String(Array.isArray(post.respuestas) ? post.respuestas.length : 0)
             };
         }));
 
