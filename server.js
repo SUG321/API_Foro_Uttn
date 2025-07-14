@@ -109,18 +109,33 @@ app.post('/register', async (req, res) => {
 // Ruta para obtener todos los posts con la información del usuario
 app.get('/posts', async (req, res) => {
     try {
-        const user = await User.findById(Post.usuario_id);
-
-
-
         const posts = await Post.find();
-        res.json(posts); 
+
+        const postDetails = await Promise.all(posts.map(async (post) => {
+            const user = await User.findById(post.usuario_id);
+
+            const date = new Date(post.fecha_publicacion);
+
+            const formattedDate = `${date.getFullYear().toString().slice(2)}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`;
+
+            return {
+                post_id: post._id,
+                apodo: user ? user.apodo : 'Desconocido',  // Manejo de posibles valores nulos
+                titulo: post.titulo,
+                contenido: post.contenido,
+                pub_date: formattedDate,
+                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
+            };
+        }));
+
+        res.json(postDetails);
 
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
     }
 });
+
 
 
 // Iniciar el servidor
