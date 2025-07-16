@@ -1,0 +1,45 @@
+[
+    {
+        "_id": "507f1f77bcf86cd799439028",
+        "nombre": "Gema Vega Rubio",
+        "email": "gema.vegar@uttn.mx",
+        "contraseña": "$282187$",
+        "fecha_registro": "2025-06-24T12:00:00.000Z",
+        "perfil": {
+            "biografia": "Soy estudiante de TI de 5to cuatrimestre",
+            "foto_perfil": "url_de_imagen"
+        },
+        "preguntas_publicadas": [
+            "507f1f77bcf86cd799439029",
+            "507f1f77bcf86cd799439030"
+        ],
+        "respuestas_dadas": [
+            "507f1f77bcf86cd799439031",
+            "507f1f77bcf86cd799439032"
+        ],
+        "apodo": "Gemar",
+        "admin": true
+    },
+    {
+        "_id": "687306c7e350eeda607b24a2",
+        "apodo": "SUG321",
+        "email": "juanalf718@gmail.com",
+        "contraseña": "Polla010",
+        "fecha_registro": null,
+        "preguntas_publicadas": [],
+        "respuestas_dadas": [],
+        "__v": 0,
+        "admin": false
+    },
+    {
+        "_id": "68735411e41ad5e3387a64d4",
+        "apodo": "Chamo",
+        "email": "Chamo.aldo@uttn.mx",
+        "contraseña": "Chamo123",
+        "admin": "false",
+        "fecha_registro": "2025-07-13T06:37:05.033Z",
+        "preguntas_publicadas": [],
+        "respuestas_dadas": [],
+        "__v": 0
+    }
+]

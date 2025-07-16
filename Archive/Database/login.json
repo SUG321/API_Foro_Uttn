@@ -1,0 +1,9 @@
+[
+    {
+        "_id": "507f1f77bcf86cd799439011",
+        "email": "gema.vegar@uttn.mx",
+        "contraseña": "$282187$",
+        "fecha_inicio_sesion": "2025-06-24T14:00:00.000Z",
+        "token": "jwt_token_string"
+    }
+]

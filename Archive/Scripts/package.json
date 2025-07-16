@@ -1,0 +1,8 @@
+{
+  "name": "exportador",
+  "version": "1.0.0",
+  "description": "Esto es para exportar la base de datos de la aplicación de foro de la uttn.",
+  "main": "Exportar.js",
+  "author": "Juan Alfredo Carranza Cruz",
+  "license": "ISC"
+}

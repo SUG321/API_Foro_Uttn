@@ -1,0 +1,16 @@
+AVR aqui van las instrucciones de como usar este coso, primero va a estar a carpeta
+"Database" esta carpeta tiene todas las colecciones de la base de datos que supongo
+que le pusieron "foro_uttn".
+
+Para actualizar la base de datos ejecutaran el "Importar.exe", esto
+importara las colecciones de la carpeta "Database" a su base de datos.
+
+En caso de ya hayan hecho modificaciones a las colecciones de la base de datos ejecutar
+el "exportar.exe" y subir el commit para que los demas veamos la actualizacion que
+hicieron, cuando hagan el commit poner que cambio hicieron muy resumido y avisar al grupo. 
+
+Ah si, si ustedes hicieron unos cambios y alguien actualizo e importan los cambios, a el coso
+este le valdra y borrara sus cambios y viceversa, por eso lo de ir atentos a los commits y al
+grupo.
+
+ya con esto explicado a chambear.
