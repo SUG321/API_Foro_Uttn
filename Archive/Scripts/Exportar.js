@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, ObjectId, Long, Decimal128 } = require('mongodb');
 const fs = require('fs');
 const path = require('path');
 
@@ -24,9 +24,28 @@ async function exportarColecciones() {
       const collectionName = coleccion.name;
       const documentos = await db.collection(collectionName).find().toArray();
 
+      // Convertir ObjectId, Date y otros tipos a formato Extended JSON
+      const documentosConvertidos = documentos.map(doc => {
+        return JSON.parse(JSON.stringify(doc, (key, value) => {
+          if (value instanceof ObjectId) {
+            return { "$oid": value.toString() };
+          }
+          if (value instanceof Date) {
+            return { "$date": value.toISOString() };
+          }
+          if (value instanceof Long) {
+            return { "$numberLong": value.toString() };
+          }
+          if (value instanceof Decimal128) {
+            return { "$numberDecimal": value.toString() };
+          }
+          return value;
+        }));
+      });
+
       const filePath = path.join(outputDir, `${collectionName}.json`);
 
-      fs.writeFileSync(filePath, JSON.stringify(documentos, null, 4), 'utf8');
+      fs.writeFileSync(filePath, JSON.stringify(documentosConvertidos, null, 4), 'utf8');
       console.log(`Colección "${collectionName}" exportada a "${filePath}"`);
     }
 

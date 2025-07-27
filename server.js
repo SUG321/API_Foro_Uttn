@@ -113,6 +113,7 @@ app.get('/posts', async (req, res) => {
 
         const postDetails = await Promise.all(posts.map(async (post) => {
             const user = await User.findById(post.usuario_id);
+            console.log(user);
 
             const date = new Date(post.fecha_publicacion);
 
@@ -124,7 +125,7 @@ app.get('/posts', async (req, res) => {
                 titulo: post.titulo,
                 contenido: post.contenido,
                 pub_date: formattedDate,
-                respuestas: String(Array.isArray(post.respuestas) ? post.respuestas.length : 0)
+                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
             };
         }));
 
