@@ -1,0 +1,172 @@
+[
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "email": "gema.vegar@uttn.mx",
+    "contraseña": "$282187$",
+    "fecha_inicio_sesion": "2025-06-24T14:00:00.000Z",
+    "token": "jwt_token_string"
+  },
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "usuario_id": "507f1f77bcf86cd799439012",
+    "pregunta_id": "507f1f77bcf86cd799439013",
+    "contenido": "La biblioteca está ubicada en el edificio principal.",
+    "fecha_respuesta": "2025-06-24T13:30:00.000Z",
+    "votos": {
+      "me_gusta": [
+        "507f1f77bcf86cd799439014",
+        "507f1f77bcf86cd799439015"
+      ],
+      "no_me_gusta": [
+        "507f1f77bcf86cd799439016",
+        "507f1f77bcf86cd799439017"
+      ]
+    }
+  },
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "nombre_completo": "Gema Vega",
+    "email": "gema.vegar@uttn.mx",
+    "contraseña": "$282187$",
+    "confirmacion_contraseña": "$282187$"
+  },
+  {
+    "_id": "686633eb6330398654447934",
+    "nombre_completo": "Juan Carranza",
+    "email": "juan.carranza@uttn.mx",
+    "contraseña": "123456",
+    "confirmacion_contraseña": "123456"
+  },
+  {
+    "_id": "6866918d2673ab57662f45fb",
+    "nombre_completo": "Aldo Gonzalez",
+    "email": "aldo.gonzalezm@uttn.mx",
+    "contraseña": "$sag$",
+    "confirmacion_contraseña": "$sag$"
+  },
+  {
+    "_id": "507f1f77bcf86cd799439028",
+    "nombre": "Gema Vega Rubio",
+    "email": "gema.vegar@uttn.mx",
+    "contraseña": "$282187$",
+    "fecha_registro": {
+      "$date": "2025-06-24T12:00:00.000Z"
+    },
+    "perfil": {
+      "biografia": "Soy estudiante de TI de 5to cuatrimestre",
+      "foto_perfil": "url_de_imagen"
+    },
+    "preguntas_publicadas": [
+      {
+        "$oid": "507f1f77bcf86cd799439029"
+      },
+      {
+        "$oid": "507f1f77bcf86cd799439030"
+      }
+    ],
+    "respuestas_dadas": [
+      {
+        "$oid": "507f1f77bcf86cd799439031"
+      },
+      {
+        "$oid": "507f1f77bcf86cd799439032"
+      }
+    ],
+    "apodo": "Gemar",
+    "admin": true
+  },
+  {
+    "_id": "687306c7e350eeda607b24a2",
+    "apodo": "SUG321",
+    "email": "juanalf718@gmail.com",
+    "contraseña": "Polla010",
+    "fecha_registro": null,
+    "preguntas_publicadas": [],
+    "respuestas_dadas": [],
+    "__v": 0,
+    "admin": false
+  },
+  {
+    "_id": "68735411e41ad5e3387a64d4",
+    "apodo": "Chamo",
+    "email": "Chamo.aldo@uttn.mx",
+    "contraseña": "Chamo123",
+    "admin": "false",
+    "fecha_registro": "2025-07-13T06:37:05.033Z",
+    "preguntas_publicadas": [],
+    "respuestas_dadas": [],
+    "__v": 0
+  },
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "nombre": "Servicios Académicos",
+    "descripcion": "Información sobre servicios académicos de la universidad",
+    "preguntas": [
+      "507f1f77bcf86cd799439012",
+      "507f1f77bcf86cd799439013"
+    ],
+    "FAQ": true
+  },
+  {
+    "_id": "6864b951041f007f3b3dbfae",
+    "user_id": "605c72ef1532070b2b3c8b3e",
+    "action_type": "Modified question",
+    "details": "La pregunta fue editada para mayor claridad.",
+    "action_date": "2025-07-01T00:00:00.000Z"
+  },
+  {
+    "_id": "6864b941041f007f3b3dbfac",
+    "user_id": "605c72ef1532070b2b3c8b3e",
+    "post_id": "60d5fbb1f6f1c8e5fcdc8b5f",
+    "description": "El contenido es inapropiado",
+    "status": "pending",
+    "report_date": "2025-07-01T00:00:00.000Z"
+  },
+  {
+    "_id": "6864b933041f007f3b3dbfaa",
+    "user_id": "605c72ef1532070b2b3c8b3e",
+    "assignment_date": "2025-07-01T00:00:00.000Z",
+    "action_history": [
+      {
+        "action": "Approved question",
+        "date": "2025-07-01T00:00:00.000Z"
+      }
+    ],
+    "permissions": [
+      "manage_users",
+      "approve_posts"
+    ]
+  },
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "usuario_id": "507f1f77bcf86cd799439012",
+    "mensaje": "Tu pregunta ha sido respondida.",
+    "fecha_notificacion": "2025-06-24T14:00:00.000Z",
+    "tipo": "respuesta",
+    "leida": false
+  },
+  {
+    "_id": "507f1f77bcf86cd799439011",
+    "usuario_id": {
+      "$oid": "507f1f77bcf86cd799439028"
+    },
+    "titulo": "¿Dónde puedo encontrar la biblioteca?",
+    "contenido": "Me gustaría saber la ubicación exacta de la biblioteca.",
+    "categoria_id": "507f1f77bcf86cd799439013",
+    "fecha_publicacion": "2025-06-24T13:00:00.000Z",
+    "respuestas": [
+      "507f1f77bcf86cd799439014",
+      "507f1f77bcf86cd799439015"
+    ],
+    "votos": {
+      "me_gusta": [
+        "507f1f77bcf86cd799439016",
+        "507f1f77bcf86cd799439017"
+      ],
+      "no_me_gusta": [
+        "507f1f77bcf86cd799439018",
+        "507f1f77bcf86cd799439019"
+      ]
+    }
+  }
+]
