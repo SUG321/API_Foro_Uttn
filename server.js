@@ -23,7 +23,9 @@ mongoose.connect('mongodb://localhost:27017/foro_uttn', {
     .then(() => console.log('Conectado a MongoDB'))
     .catch((err) => console.log('Error al conectar a MongoDB: ', err));
 
-// Ruta para iniciar sesión
+
+
+// Ruta para iniciar sesión ----------------------------------------------------------------------------(FALTA ESTA)
 app.post('/login', async (req, res) => {
     const { email, contraseña } = req.body;
 
@@ -64,7 +66,9 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Ruta para registrar un nuevo usuario
+
+
+// Ruta para registrar un nuevo usuario ----------------------------------------------------------------------------(FALTA ESTA)
 app.post('/register', async (req, res) => {
     const { apodo, email, contraseña } = req.body;
 
@@ -106,7 +110,8 @@ app.post('/register', async (req, res) => {
 });
 
 
-// Ruta para obtener todos los posts con la información del usuario
+// Ruta para obtener todos los posts con la información del usuario  --------------------------------------------(FALTA ESTA)
+// Aun falta agregar salida de votos
 app.get('/posts', async (req, res) => {
     try {
         const posts = await Post.find();
