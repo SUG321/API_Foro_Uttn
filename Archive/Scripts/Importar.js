@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 
 const url = 'mongodb://localhost:27017';
-const dbName = 'foro_uttn';
 const dumpDir = path.join(__dirname, '..', 'Database');
 
 function importarColecciones() {
@@ -12,7 +11,7 @@ function importarColecciones() {
     return;
   }
 
-  const command = `mongorestore --uri="${url}/${dbName}" --drop "${path.join(dumpDir, dbName)}"`;
+  const command = `mongorestore --uri="${url}" --drop "${dumpDir}"`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
