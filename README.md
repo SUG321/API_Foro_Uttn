@@ -20,7 +20,31 @@ Para iniciar el servidor en modo desarrollo utiliza:
 npm run dev
 ```
 
+
 El comando anterior usa **nodemon** para cargar `server.js` y recargar automáticamente el servidor al detectar cambios.
+
+
+## Endpoints de autenticación
+
+- `POST /login` inicia sesión de un usuario existente.
+- `POST /register` registra un nuevo usuario.
+
+
+## Endpoints de gestión de posts
+
+- `GET /posts` lista todas las publicaciones.
+- `GET /posts/:id` obtiene los detalles de un post.
+- `POST /posts` crea una nueva publicación.
+- `PUT /posts/:id` actualiza un post existente.
+- `DELETE /posts/:id` elimina un post.
+
+## Endpoints de gestión de respuestas
+
+- `GET /posts/:postId/responses` lista las respuestas de un post.
+- `POST /posts/:postId/responses` crea una respuesta.
+- `PUT /responses/:id` actualiza una respuesta existente.
+- `DELETE /responses/:id` elimina una respuesta.
+
 
 ## Importación y exportación de la base de datos
 
