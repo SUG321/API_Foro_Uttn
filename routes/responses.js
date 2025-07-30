@@ -54,7 +54,9 @@ router.post('/posts/:postId/responses', async (req, res) => {
 router.put('/responses/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const updated = await Response.findByIdAndUpdate(id, req.body, { new: true });
+        const updateData = { ...req.body, modified: true };
+        const updated = await Response.findByIdAndUpdate(id, updateData, { new: true });
+        
         if (!updated) {
             return res.status(404).json({ success: false, message: 'Respuesta no encontrada' });
         }

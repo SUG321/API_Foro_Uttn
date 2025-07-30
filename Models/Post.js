@@ -13,7 +13,8 @@ const PostSchema = new mongoose.Schema({
   categoria_id: { type: mongoose.Schema.Types.ObjectId, ref: 'categories' },
   fecha_publicacion: { type: Date, default: Date.now },
   respuestas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'responeses' }],
-  votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) }
+  votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) },
+  modified: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Post', PostSchema);

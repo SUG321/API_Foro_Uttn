@@ -73,7 +73,9 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     try {
-        const updatedPost = await Post.findByIdAndUpdate(id, req.body, { new: true });
+        const updateData = { ...req.body, modified: true };
+        const updatedPost = await Post.findByIdAndUpdate(id, updateData, { new: true });
+        
         if (!updatedPost) {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }

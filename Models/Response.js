@@ -10,7 +10,8 @@ const ResponseSchema = new mongoose.Schema({
   pregunta_id: { type: mongoose.Schema.Types.ObjectId, ref: 'posts', required: true },
   contenido: { type: String, required: true },
   fecha_respuesta: { type: Date, default: Date.now },
-  votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) }
+  votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) },
+  modified: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Response', ResponseSchema, 'responses');
