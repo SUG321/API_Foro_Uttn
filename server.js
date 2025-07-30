@@ -3,8 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+
 const User = require('./Models/User');
 const Post = require('./Models/Post');
+const Response = require('./Models/Response');
 
 // Crear una instancia de Express
 const app = express();
@@ -136,6 +138,37 @@ app.get('/posts', async (req, res) => {
 
         res.json(postDetails);
 
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error en el servidor' });
+    }
+});
+
+
+
+// Ruta para obtener todas las respuestas de una publicación -------------------
+app.get('/posts/:postId/responses', async (req, res) => {
+    const { postId } = req.params;
+    try {
+        const responses = await Response.find({ pregunta_id: postId });
+
+        const responseDetails = await Promise.all(responses.map(async (resp) => {
+            const user = await User.findById(resp.usuario_id);
+            return {
+                respuesta_id: resp._id,
+                contenido: resp.contenido,
+                fecha_respuesta: resp.fecha_respuesta,
+                votos: resp.votos,
+                usuario: {
+                    id: user ? user._id : null,
+                    apodo: user ? user.apodo : 'Desconocido',
+                    nombre: user ? user.nombre : undefined,
+                    foto_perfil: user && user.perfil ? user.perfil.foto_perfil : undefined
+                }
+            };
+        }));
+
+        res.json(responseDetails);
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
