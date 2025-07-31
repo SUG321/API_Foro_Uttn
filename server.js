@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const postsRoutes = require('./routes/posts');
 const responsesRoutes = require('./routes/responses');
+const usersRoutes = require('./routes/users');
+const actionsRoutes = require('./routes/actions');
 
 const app = express();
 
@@ -27,7 +29,9 @@ mongoose.connect('mongodb://localhost:27017/foro_uttn', {
 // Montar las rutas
 app.use('/', authRoutes);           // Login y registro "/" + "/login" = "localhost:5000/login" Mira el Readme.md
 app.use('/posts', postsRoutes);     // Endpoints de Posts
-app.use('/', responsesRoutes); // Endpoints de Respuestas
+app.use('/', responsesRoutes);      // Endpoints de Respuestas
+app.use('/', usersRoutes);          // Endpoints de Usuarios
+app.use('/', actionsRoutes);        // Endpoints de Acciones
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);

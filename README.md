@@ -45,6 +45,12 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 - `PUT /responses/:id` actualiza una respuesta existente.
 - `DELETE /responses/:id` elimina una respuesta.
 
+## Endpoints de usuarios y acciones
+
+- `GET /users/:id/posts` devuelve las preguntas creadas por el usuario.
+- `GET /users/:id/answered-posts` devuelve las preguntas en las que el usuario respondió.
+- `POST /actions` registra una acción realizada por un usuario.
+
 
 ## Importación y exportación de la base de datos
 
