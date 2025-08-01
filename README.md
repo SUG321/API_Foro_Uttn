@@ -47,6 +47,11 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 
 ## Endpoints de usuarios y acciones
 
+- `GET /users` lista todos los usuarios.
+- `GET /users/:id` obtiene los detalles de un usuario.
+- `POST /users` crea un usuario.
+- `PUT /users/:id` actualiza un usuario existente.
+- `DELETE /users/:id` elimina un usuario.
 - `GET /users/:id/posts` devuelve las preguntas creadas por el usuario.
 - `GET /users/:id/answered-posts` devuelve las preguntas en las que el usuario respondió.
 - `POST /actions` registra una acción realizada por un usuario.

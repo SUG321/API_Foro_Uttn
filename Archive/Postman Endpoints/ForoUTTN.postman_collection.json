@@ -295,26 +295,132 @@
 					"response": []
 				},
 				{
-					"name": "Preguntas Respondidas",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/users/{{userId}}/answered-posts",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users",
-								"{{userId}}",
-								"answered-posts"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
+                                        "name": "Preguntas Respondidas",
+                                        "request": {
+                                                "method": "GET",
+                                                "header": [],
+                                                "url": {
+                                                        "raw": "{{base_url}}/users/{{userId}}/answered-posts",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users",
+                                                                "{{userId}}",
+                                                                "answered-posts"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                },
+                                {
+                                        "name": "Listar Usuarios",
+                                        "request": {
+                                                "method": "GET",
+                                                "header": [],
+                                                "url": {
+                                                        "raw": "{{base_url}}/users",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                },
+                                {
+                                        "name": "Detalle Usuario",
+                                        "request": {
+                                                "method": "GET",
+                                                "header": [],
+                                                "url": {
+                                                        "raw": "{{base_url}}/users/{{userId}}",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users",
+                                                                "{{userId}}"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                },
+                                {
+                                        "name": "Crear Usuario",
+                                        "request": {
+                                                "method": "POST",
+                                                "header": [
+                                                        {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json"
+                                                        }
+                                                ],
+                                                "body": {
+                                                        "mode": "raw",
+                                                        "raw": "{\n  \"email\": \"nuevo@uttn.mx\",\n  \"contrase\u00f1a\": \"pass\"\n}"
+                                                },
+                                                "url": {
+                                                        "raw": "{{base_url}}/users",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                },
+                                {
+                                        "name": "Actualizar Usuario",
+                                        "request": {
+                                                "method": "PUT",
+                                                "header": [
+                                                        {
+                                                                "key": "Content-Type",
+                                                                "value": "application/json"
+                                                        }
+                                                ],
+                                                "body": {
+                                                        "mode": "raw",
+                                                        "raw": "{\n  \"apodo\": \"editado\"\n}"
+                                                },
+                                                "url": {
+                                                        "raw": "{{base_url}}/users/{{userId}}",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users",
+                                                                "{{userId}}"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                },
+                                {
+                                        "name": "Eliminar Usuario",
+                                        "request": {
+                                                "method": "DELETE",
+                                                "header": [],
+                                                "url": {
+                                                        "raw": "{{base_url}}/users/{{userId}}",
+                                                        "host": [
+                                                                "{{base_url}}"
+                                                        ],
+                                                        "path": [
+                                                                "users",
+                                                                "{{userId}}"
+                                                        ]
+                                                }
+                                        },
+                                        "response": []
+                                }
+                        ]
+                },
 		{
 			"name": "Acciones",
 			"item": [
