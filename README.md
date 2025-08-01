@@ -67,3 +67,10 @@ Ejecuta los scripts con Node:
 node Archive/Scripts/Importar.js   # importar datos
 node Archive/Scripts/Exportar.js   # exportar datos
 ```
+
+## Colección de Postman
+
+Para facilitar las pruebas de la API se incluye el archivo
+`ForoUTTN.postman_collection.json` con todas las rutas descritas arriba.
+Importa este archivo en Postman para contar con ejemplos básicos de cada
+petición.

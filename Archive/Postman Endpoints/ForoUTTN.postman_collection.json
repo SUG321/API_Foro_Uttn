@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "bb9cd238-8929-4d0b-8936-da0e7df0b21f",
+		"name": "Foro UTTN API",
+		"description": "Colección de endpoints para la API del Foro UTTN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42620623"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"gema.vegar@uttn.mx\",\n  \"contraseña\": \"Contra123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"apodo\": \"Juan Carrión\",\n  \"email\": \"Juan.Carranza@uttn.mx\",\n  \"contraseña\": \"ContraseñaHash\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Listar Posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detalle de Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/{{postId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Post",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"titulo\": \"Donde puedo sacar un kardex?\",\n  \"contenido\": \"Necesito uno para un trámite\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Actualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/{{postId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/{{postId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Respuestas",
+			"item": [
+				{
+					"name": "Listar Respuestas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/{{postId}}/responses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}",
+								"responses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Respuesta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"contenido\": \"respuesta\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/posts/{{postId}}/responses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"{{postId}}",
+								"responses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Respuesta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"contenido\": \"editado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/responses/{{responseId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"responses",
+								"{{responseId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Respuesta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/responses/{{responseId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"responses",
+								"{{responseId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Posts del Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{userId}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Preguntas Respondidas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{userId}}/answered-posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{userId}}",
+								"answered-posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Acciones",
+			"item": [
+				{
+					"name": "Registrar Accion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"accion\": \"login\",\n  \"detalles\": \"detalle\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/actions",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"actions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "postId",
+			"value": "507f1f77bcf86cd799439011"
+		},
+		{
+			"key": "responseId",
+			"value": "507f1f77bcf86cd799439011"
+		},
+		{
+			"key": "userId",
+			"value": "687306c7e350eeda607b24a2"
+		}
+	]
+}
