@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Action = require('./Models/Action');
+const Action = require('../Models/Action');
 
 // Registrar una acción de usuario
 router.post('/actions', async (req, res) => {
