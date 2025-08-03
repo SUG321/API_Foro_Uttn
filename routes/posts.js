@@ -3,7 +3,7 @@ const router = express.Router();
 const Post = require('../Models/Post');
 const User = require('../Models/User');
 
-// Obtener todos los posts con información del usuario
+// Obtener todos los posts aceptados con información del usuario basica
 router.get('/', async (req, res) => {
     try {
         const posts = await Post.find();
@@ -11,7 +11,12 @@ router.get('/', async (req, res) => {
         const postDetails = await Promise.all(posts.map(async (post) => {
             const user = await User.findById(post.usuario_id);
             const date = new Date(post.fecha_publicacion);
-            const formattedDate = `${date.getFullYear().toString().slice(2)}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`;
+            const formattedDate = date.toLocaleDateString('es-MX', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                timeZone: 'America/Mexico_City'
+            });
 
             return {
                 post_id: post._id,
@@ -31,7 +36,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Obtener un post específico
+// Obtener un post específico con información extendida
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -62,7 +67,7 @@ router.post('/', async (req, res) => {
     try {
         const newPost = new Post({ usuario_id, titulo, contenido, categoria_id });
         await newPost.save();
-        res.status(201).json({ success: true, message: 'Post creado correctamente', post_id: newPost._id });
+        res.status(201).json({ success: true });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -75,11 +80,11 @@ router.put('/:id', async (req, res) => {
     try {
         const updateData = { ...req.body, modified: true };
         const updatedPost = await Post.findByIdAndUpdate(id, updateData, { new: true });
-        
+
         if (!updatedPost) {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }
-        res.json({ success: true, message: 'Post actualizado', post: updatedPost });
+        res.json({ success: true });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -94,7 +99,7 @@ router.delete('/:id', async (req, res) => {
         if (!deleted) {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }
-        res.json({ success: true, message: 'Post eliminado' });
+        res.json({ success: true });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });

@@ -55,6 +55,7 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 - `GET /users/:id/posts` devuelve las preguntas creadas por el usuario.
 - `GET /users/:id/answered-posts` devuelve las preguntas en las que el usuario respondió.
 - `POST /actions` registra una acción realizada por un usuario.
+- `GET /actions` lista las acciones registradas (se puede filtrar por `user_id`).
 
 
 ## Importación y exportación de la base de datos
