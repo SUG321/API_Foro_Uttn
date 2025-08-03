@@ -4,6 +4,7 @@ const Post = require('../Models/Post');
 const Response = require('../Models/Response');
 const Action = require('../Models/Action');
 const User = require('../Models/User');
+const registrarAccion = require('../Logic/registrarAccion');
 
 // Obtener todas las preguntas realizadas por un usuario
 router.get('/users/:userId/posts', async (req, res) => {

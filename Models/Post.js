@@ -11,10 +11,11 @@ const PostSchema = new mongoose.Schema({
   titulo: { type: String, required: true },
   contenido: { type: String, required: true },
   categoria_id: { type: mongoose.Schema.Types.ObjectId, ref: 'categories' },
-  fecha_publicacion: { type: Date, default: Date.now },
+  fecha_publicacion: { type: Date },
   respuestas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'responeses' }],
   votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) },
-  modified: { type: Boolean, default: false }
+  modified: { type: Boolean, default: false },
+  verified: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Post', PostSchema);

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Response = require('../Models/Response');
 const User = require('../Models/User');
+const registrarAccion = require('../Logic/registrarAccion');
 
 // Obtener todas las respuestas de un post
 router.get('/posts/:postId/responses', async (req, res) => {

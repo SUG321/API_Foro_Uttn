@@ -1,29 +1,27 @@
 const express = require('express');
 const router = express.Router();
+
 const Post = require('../Models/Post');
 const User = require('../Models/User');
+
+const { DateMX, TimeMX } = require('../Logic/dateFormatting');
+const registrarAccion = require('../Logic/registrarAccion');
 
 // Obtener todos los posts aceptados con información del usuario basica
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find({ verified: true });
 
         const postDetails = await Promise.all(posts.map(async (post) => {
             const user = await User.findById(post.usuario_id);
             const date = new Date(post.fecha_publicacion);
-            const formattedDate = date.toLocaleDateString('es-MX', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                timeZone: 'America/Mexico_City'
-            });
 
             return {
                 post_id: post._id,
                 apodo: user ? user.apodo : 'Desconocido',
                 titulo: post.titulo,
                 contenido: post.contenido,
-                pub_date: formattedDate,
+                pub_date: DateMX(date),
                 respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
             };
         }));
@@ -46,13 +44,14 @@ router.get('/:id', async (req, res) => {
         }
         const user = await User.findById(post.usuario_id);
         const date = new Date(post.fecha_publicacion);
-        const formattedDate = `${date.getFullYear().toString().slice(2)}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`;
+
         res.json({
             post_id: post._id,
             apodo: user ? user.apodo : 'Desconocido',
             titulo: post.titulo,
             contenido: post.contenido,
-            pub_date: formattedDate,
+            pub_date: DateMX(date),
+            pub_time: TimeMX(date),
             respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
         });
     } catch (err) {
@@ -64,8 +63,11 @@ router.get('/:id', async (req, res) => {
 // Crear un nuevo post
 router.post('/', async (req, res) => {
     const { usuario_id, titulo, contenido, categoria_id } = req.body;
+
+    const fecha_publicacion = Date();
+
     try {
-        const newPost = new Post({ usuario_id, titulo, contenido, categoria_id });
+        const newPost = new Post({ usuario_id, titulo, contenido, categoria_id, fecha_publicacion });
         await newPost.save();
         res.status(201).json({ success: true });
     } catch (err) {

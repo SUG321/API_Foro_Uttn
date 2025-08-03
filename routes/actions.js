@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Action = require('../Models/Action');
+const registrarAccion = require('../Logic/registrarAccion');
 
 const mongoose = require('mongoose');
 const User = require('../Models/User');
@@ -52,10 +53,7 @@ router.get('/actions', async (req, res) => {
 router.post('/actions', async (req, res) => {
   const { user_id, action_type, details } = req.body;
   try {
-    const action_date = new Date();
-    console.log(action_date);
-    const newAction = new Action({ user_id, action_type, details, action_date });
-    await newAction.save();
+    await registrarAccion(user_id, action_type, details);
     res.status(201).json({ success: true });
   } catch (err) {
     console.error(err);

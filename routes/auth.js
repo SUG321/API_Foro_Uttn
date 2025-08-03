@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../Models/User');
+const registrarAccion = require('../Logic/registrarAccion');
 
 // Ruta para iniciar sesión
 router.post('/login', async (req, res) => {
