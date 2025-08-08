@@ -386,7 +386,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"apodo\": \"Gema Vega\"\n}"
+							"raw": "{\n  \"admin\": false\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/users/{{userId}}",
