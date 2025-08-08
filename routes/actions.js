@@ -1,10 +1,14 @@
 const express = require('express');
 const router = express.Router();
+
 const Action = require('../Models/Action');
+const User = require('../Models/User');
+const Post = require('../Models/Post');
+
 const registrarAccion = require('../Logic/registrarAccion');
+const { DateMX, TimeMX } = require('../Logic/dateFormatting');
 
 const mongoose = require('mongoose');
-const User = require('../Models/User');
 
 // Ver todas las acciones de usuarios o uno en específico
 router.get('/actions', async (req, res) => {
@@ -16,29 +20,27 @@ router.get('/actions', async (req, res) => {
     const formattedActions = await Promise.all(actions.map(async (action) => {
       const user = await User.findById(action.user_id);
       const date = new Date(action.action_date);
-
-      // Formateo de fecha
-      const formattedDateYears = date.toLocaleDateString('es-MX', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-        timeZone: 'America/Mexico_City'
-      });
-
-      const formattedDateHours = date.toLocaleTimeString('es-ES', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZone: 'America/Mexico_City'
-      });
-
-      return {
+      
+      let actionData = {
         action_user: user.apodo,
         action: action.action_type,
         details: action.details,
-        date: formattedDateYears,
-        hour: formattedDateHours
+        date: DateMX(date),
+        hour: TimeMX(date)
       };
+
+      if (action.objective_type) {
+        if (action.objective_type === "Post") {
+          const post = await Post.findById(action.objective_id);
+          actionData.titulo = post.titulo;
+        }
+        if (action.objective_type === "User") {
+          const userObjective = await User.findById(action.objective_id); 
+          actionData.apodo = userObjective.apodo;
+        }
+      }
+
+      return actionData; 
     }));
 
     res.json(formattedActions);
@@ -49,11 +51,12 @@ router.get('/actions', async (req, res) => {
 });
 
 
+
 // Registrar una acción de usuario
 router.post('/actions', async (req, res) => {
-  const { user_id, action_type, details } = req.body;
+  const { user_id, action_type, details, objective_id, objective_type } = req.body;
   try {
-    await registrarAccion(user_id, action_type, details);
+    await registrarAccion(user_id, action_type, details, objective_id, objective_type);
     res.status(201).json({ success: true });
   } catch (err) {
     console.error(err);

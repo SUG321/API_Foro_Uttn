@@ -1,0 +1,20 @@
+{
+  "acciones": [
+    {"id": 1, "accion": "Crear una publicación"},
+    {"id": 2, "accion": "Modificar su publicación"},
+    {"id": 3, "accion": "Eliminar su publicación"},
+    {"id": 4, "accion": "Reaccionar a una publicación"},
+    {"id": 5, "accion": "Reaccionar a una respuesta"},
+    {"id": 6, "accion": "Comentar una publicación"},
+    {"id": 7, "accion": "Cerrar su publicación"},
+    {"id": 8, "accion": "Editar su perfil"},
+
+    {"id": 9, "accion": "Registrarse"},
+    {"id": 10, "accion": "Iniciar sesión"},
+    
+    {"id": 11, "accion": "Cerrar una publicación"},
+    {"id": 12, "accion": "Suspender a un usuario"},
+    {"id": 13, "accion": "Verificar una respuesta"},
+    {"id": 14, "accion": "Autorizar una publicación"}
+  ]
+}

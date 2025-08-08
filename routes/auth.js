@@ -22,6 +22,9 @@ router.post('/login', async (req, res) => {
                         admin: user.admin
                     },
                 });
+
+            await registrarAccion(user._id, 10, "Iniciar sesión");
+
             } else {
                 res.json({ success: false, message: 'Contraseña incorrecta' });
             }
@@ -63,6 +66,8 @@ router.post('/register', async (req, res) => {
                 id: user._id
             }
         });
+
+        await registrarAccion(user._id, 9, "Registrarse");
 
     } catch (err) {
         console.error(err);

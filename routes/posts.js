@@ -64,12 +64,16 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { usuario_id, titulo, contenido, categoria_id } = req.body;
 
-    const fecha_publicacion = Date();
+    const fecha_publicacion = new Date();
 
     try {
         const newPost = new Post({ usuario_id, titulo, contenido, categoria_id, fecha_publicacion });
-        await newPost.save();
+        const savedPost = await newPost.save();
+        
+        await registrarAccion(usuario_id, 1, "Creó una publicación", savedPost._id, "Post"); // MARCA DE CREACIÓN DE PUBLICACIÓN -------------------------
+        
         res.status(201).json({ success: true });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -79,14 +83,19 @@ router.post('/', async (req, res) => {
 // Actualizar un post existente
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
+    const { usuario_id, ...body } = req.body;
+
     try {
-        const updateData = { ...req.body, modified: true };
+        const updateData = { ...body, modified: true };
         const updatedPost = await Post.findByIdAndUpdate(id, updateData, { new: true });
 
         if (!updatedPost) {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }
+
         res.json({ success: true });
+        await registrarAccion(usuario_id, 2, "Actualizó su publicación"); // MARCA DE ACTUALIZACIÓN DE PUBLICACIÓN -----------------
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -102,6 +111,7 @@ router.delete('/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }
         res.json({ success: true });
+        await registrarAccion(usuario_id, 3, "Eliminar su publicación");
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
