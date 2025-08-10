@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const Response = require('../Models/Response');
 const User = require('../Models/User');
+
+const { DateMX, TimeMX } = require('../Logic/dateFormatting');
 const registrarAccion = require('../Logic/registrarAccion');
 
 // Obtener todas las respuestas de un post
@@ -12,10 +15,13 @@ router.get('/posts/:postId/responses', async (req, res) => {
 
         const responseDetails = await Promise.all(responses.map(async (resp) => {
             const user = await User.findById(resp.usuario_id);
+            const date = new Date(resp.fecha_respuesta);
             return {
+                pregunta_id: postId,
                 respuesta_id: resp._id,
                 contenido: resp.contenido,
-                fecha_respuesta: resp.fecha_respuesta,
+                res_date: DateMX(date),
+                res_time: TimeMX(date),
                 votos: resp.votos,
                 usuario: {
                     id: user ? user._id : null,
@@ -45,6 +51,7 @@ router.post('/posts/:postId/responses', async (req, res) => {
         });
         await newResponse.save();
         res.status(201).json({ success: true, message: 'Respuesta creada', respuesta_id: newResponse._id });
+        registrarAccion(usuario_id, 6, "Respondió a una publicación", newResponse._id, "Response");
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -53,7 +60,7 @@ router.post('/posts/:postId/responses', async (req, res) => {
 
 // Actualizar una respuesta existente
 router.put('/responses/:id', async (req, res) => {
-    const { id } = req.params;
+    const { id, usuario_id } = req.params;
     try {
         const updateData = { ...req.body, modified: true };
         const updated = await Response.findByIdAndUpdate(id, updateData, { new: true });
@@ -62,6 +69,7 @@ router.put('/responses/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Respuesta no encontrada' });
         }
         res.json({ success: true, message: 'Respuesta actualizada', respuesta: updated });
+        registrarAccion(usuario_id, 7, "Modificó su respuesta", id, "Response");
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -77,6 +85,7 @@ router.delete('/responses/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Respuesta no encontrada' });
         }
         res.json({ success: true, message: 'Respuesta eliminada' });
+        registrarAccion(usuario_id, 8, "Eliminó su respuesta", deleted.pregunta_id, "Post");
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });

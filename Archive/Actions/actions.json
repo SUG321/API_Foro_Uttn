@@ -1,23 +1,32 @@
 {
   "acciones": [
-    {"id": 1, "accion": "Creó una publicación"},
-    {"id": 2, "accion": "Modificó su publicación"},
-    {"id": 3, "accion": "Eliminó su publicación"},
-    {"id": 4, "accion": "Reaccionó a una publicación"},
-    {"id": 5, "accion": "Reaccionó a una respuesta"},
-    {"id": 6, "accion": "Comentó una publicación"},
-    {"id": 7, "accion": "Cerró su publicación"},
-    {"id": 8, "accion": "Editó su perfil"},
+    { "id": 1, "accion": "Creó una publicación" },
+    { "id": 2, "accion": "Modificó su publicación" },
+    { "id": 3, "accion": "Eliminó su publicación" },
+    { "id": 4, "accion": "Reaccionó a una publicación" },
 
-    {"id": 9, "accion": "Se registró"},
-    {"id": 10, "accion": "Inició sesión"},
-    
-    {"id": 11, "accion": "Cerró una publicación"},
-    {"id": 12, "accion": "Suspendió a un usuario"},
-    {"id": 13, "accion": "Verificó una respuesta"},
-    {"id": 14, "accion": "Agregó una publicación a FAQ"},
-    {"id": 15, "accion": "Agregó una pregunta a FAQ"},
-    {"id": 16, "accion": "Eliminó una pregunta de FAQ"},
-    {"id": 17, "accion": "Modificó una pregunta de FAQ"}
+    { "id": 5, "accion": "Reaccionó a una respuesta" },
+    { "id": 6, "accion": "Respondió a una publicación" },
+    { "id": 7, "accion": "Modificó su respuesta" },
+    { "id": 8, "accion": "Eliminó su respuesta" },
+    { "id": 9, "accion": "Cerró su publicación" },
+
+    { "id": 10, "accion": "Editó su perfil" },
+
+
+    { "id": 11, "accion": "Se registró" },
+    { "id": 12, "accion": "Inició sesión" },
+
+
+    { "id": 13, "accion": "Cerró una publicación" },
+    { "id": 14, "accion": "Suspendió a un usuario" },
+    { "id": 15, "accion": "Verificó una respuesta" },
+    { "id": 16, "accion": "Ocultó una respuesta" },
+    { "id": 17, "accion": "Agregó una publicación a FAQ" },
+    { "id": 18, "accion": "Agregó una pregunta a FAQ" },
+    { "id": 19, "accion": "Eliminó una pregunta de FAQ" },
+    { "id": 20, "accion": "Modificó una pregunta de FAQ" },
+    { "id": 21, "accion": "Otorgo permisos de administrador" },
+    { "id": 22, "accion": "Revoco permisos de administrador" }
   ]
 }

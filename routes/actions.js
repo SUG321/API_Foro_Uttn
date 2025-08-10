@@ -4,6 +4,7 @@ const router = express.Router();
 const Action = require('../Models/Action');
 const User = require('../Models/User');
 const Post = require('../Models/Post');
+const Response = require('../Models/Response');
 
 const registrarAccion = require('../Logic/registrarAccion');
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
@@ -23,6 +24,7 @@ router.get('/actions', async (req, res) => {
       
       let actionData = {
         action_user: user.apodo,
+        action_user_id: user._id,
         action: action.action_type,
         details: action.details,
         date: DateMX(date),
@@ -32,11 +34,18 @@ router.get('/actions', async (req, res) => {
       if (action.objective_type) {
         if (action.objective_type === "Post") {
           const post = await Post.findById(action.objective_id);
+          actionData.post_id = post._id;
           actionData.titulo = post.titulo;
         }
         if (action.objective_type === "User") {
           const userObjective = await User.findById(action.objective_id); 
+          actionData.user_id = userObjective._id;
           actionData.apodo = userObjective.apodo;
+        }
+        if (action.objective_type === "Response") {
+          const response = await Response.findById(action.objective_id);
+          actionData.response_id = response._id;
+          actionData.response_content = response.contenido;
         }
       }
 

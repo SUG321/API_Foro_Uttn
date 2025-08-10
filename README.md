@@ -32,8 +32,8 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 
 ## Endpoints de gestión de posts
 
-- `GET /posts` lista todas las publicaciones.
-- `GET /posts/:id` obtiene los detalles de un post.
+- `GET /posts` lista publicaciones. Acepta los query params `post_id` para obtener un post específico y `verified` (`true`/`false`) para filtrar por publicaciones verificadas (por defecto `true`).
+
 - `POST /posts` crea una nueva publicación.
 - `PUT /posts/:id` actualiza un post existente.
 - `DELETE /posts/:id` elimina un post.

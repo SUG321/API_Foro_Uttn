@@ -7,9 +7,8 @@ const User = require('../Models/User');
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
 const registrarAccion = require('../Logic/registrarAccion');
 
-// Obtener posts o un post específico
 router.get('/', async (req, res) => {
-    const { post_id, verified } = req.body;  // Recibiendo post_id y verified desde el body
+    const { post_id, verified } = req.query;  // Recibiendo post_id y verified desde param
 
     try {
         if (post_id) {
@@ -27,19 +26,21 @@ router.get('/', async (req, res) => {
                 contenido: post.contenido,
                 pub_date: DateMX(date),
                 pub_time: TimeMX(date),
-                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
+                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0,
+                mensaje_admin: post.mensaje_admin
             });
         }
 
         const query = {};
         if (verified !== undefined) {
             if (verified === 'true' || verified === 'false') {
-                query.verified = verified === 'true';
+                // Si 'verified' es false, filtramos por verified: false
+                query.verified = verified === 'true' ? true : false;
             } else {
                 return res.status(400).json({ success: false, message: "Parámetro 'verified' debe ser true o false" });
             }
         } else {
-            query.verified = true;
+            query.verified = true;  // Si no se pasa 'verified', solo mostramos los verificados
         }
 
         const posts = await Post.find(query);
@@ -53,7 +54,9 @@ router.get('/', async (req, res) => {
                 titulo: post.titulo,
                 contenido: post.contenido,
                 pub_date: DateMX(date),
-                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
+                pub_time: TimeMX(date),
+                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0,
+                mensaje_admin: post.mensaje_admin
             };
         }));
 

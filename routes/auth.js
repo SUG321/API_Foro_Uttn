@@ -23,7 +23,7 @@ router.post('/login', async (req, res) => {
                     },
                 });
 
-            await registrarAccion(user._id, 10, "Inició sesión");
+            await registrarAccion(user._id, 12, "Inició sesión");
 
             } else {
                 res.json({ success: false, message: 'Contraseña incorrecta' });
@@ -42,32 +42,41 @@ router.post('/register', async (req, res) => {
     const { apodo, email, contraseña } = req.body;
 
     try {
+        // Verificar si el email ya está registrado
         const userExists = await User.findOne({ email: email });
         if (userExists) {
-            return res.json({ success: false, message: 'El email ya está registrado' });
+            return res.status(400).json({ success: false, message: 'El email ya está registrado' });
         }
 
+        // Crear el nuevo usuario con los datos proporcionados
         const newUser = new User({
             apodo,
             email,
-            contraseña,
-            admin: false,
+            contraseña: contraseña, // Guardar la contraseña encriptada
+            admin: false, // Usuario no es admin por defecto
+            perfil: { biografia: "", foto_perfil: "" }, // Perfil vacío por defecto
             fecha_registro: Date.now()
         });
 
+        // Guardar el nuevo usuario en la base de datos
         await newUser.save();
 
-        const user = await User.findOne({ email: email });
+        // Obtener el usuario registrado para enviar la respuesta
+        const user = await User.findOne({ email: email }).select('-contraseña'); // No enviar la contraseña en la respuesta
 
         res.json({
             success: true,
             message: 'Usuario registrado exitosamente',
             user: {
-                id: user._id
+                id: user._id,
+                apodo: user.apodo,
+                email: user.email,
+                fecha_registro: user.fecha_registro
             }
         });
 
-        await registrarAccion(user._id, 9, "Se registró");
+        // Llamar a la función para registrar acción (si es necesario)
+        await registrarAccion(user._id, 13, "Se registró");
 
     } catch (err) {
         console.error(err);
