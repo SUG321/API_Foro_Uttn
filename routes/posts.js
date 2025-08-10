@@ -94,7 +94,7 @@ router.put('/:id', async (req, res) => {
         }
 
         res.json({ success: true });
-        await registrarAccion(usuario_id, 2, "Actualizó su publicación"); // MARCA DE ACTUALIZACIÓN DE PUBLICACIÓN -----------------
+        await registrarAccion(usuario_id, 2, "Modificó su publicación"); // MARCA DE ACTUALIZACIÓN DE PUBLICACIÓN -----------------
 
     } catch (err) {
         console.error(err);
@@ -105,13 +105,14 @@ router.put('/:id', async (req, res) => {
 // Eliminar un post
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
+    const { usuario_id } = req.body;
     try {
         const deleted = await Post.findByIdAndDelete(id);
         if (!deleted) {
             return res.status(404).json({ success: false, message: 'Post no encontrado' });
         }
         res.json({ success: true });
-        await registrarAccion(usuario_id, 3, "Eliminar su publicación");
+        await registrarAccion(usuario_id, 3, "Eliminó su publicación");
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });

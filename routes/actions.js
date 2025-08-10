@@ -42,7 +42,7 @@ router.get('/actions', async (req, res) => {
 
       return actionData; 
     }));
-
+    
     res.json(formattedActions);
   } catch (err) {
     console.error(err);

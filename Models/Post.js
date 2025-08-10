@@ -15,7 +15,8 @@ const PostSchema = new mongoose.Schema({
   respuestas: [{ type: mongoose.Schema.Types.ObjectId, ref: 'responeses' }],
   votos: { type: votosSchema, default: () => ({ me_gusta: [], no_me_gusta: [] }) },
   modified: { type: Boolean, default: false },
-  verified: { type: Boolean, default: false }
+  verified: { type: Boolean, default: false },
+  mensaje_admin: { type: String }
 });
 
 module.exports = mongoose.model('Post', PostSchema);

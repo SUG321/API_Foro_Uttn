@@ -1,20 +1,23 @@
 {
   "acciones": [
-    {"id": 1, "accion": "Crear una publicación"},
-    {"id": 2, "accion": "Modificar su publicación"},
-    {"id": 3, "accion": "Eliminar su publicación"},
-    {"id": 4, "accion": "Reaccionar a una publicación"},
-    {"id": 5, "accion": "Reaccionar a una respuesta"},
-    {"id": 6, "accion": "Comentar una publicación"},
-    {"id": 7, "accion": "Cerrar su publicación"},
-    {"id": 8, "accion": "Editar su perfil"},
+    {"id": 1, "accion": "Creó una publicación"},
+    {"id": 2, "accion": "Modificó su publicación"},
+    {"id": 3, "accion": "Eliminó su publicación"},
+    {"id": 4, "accion": "Reaccionó a una publicación"},
+    {"id": 5, "accion": "Reaccionó a una respuesta"},
+    {"id": 6, "accion": "Comentó una publicación"},
+    {"id": 7, "accion": "Cerró su publicación"},
+    {"id": 8, "accion": "Editó su perfil"},
 
-    {"id": 9, "accion": "Registrarse"},
-    {"id": 10, "accion": "Iniciar sesión"},
+    {"id": 9, "accion": "Se registró"},
+    {"id": 10, "accion": "Inició sesión"},
     
-    {"id": 11, "accion": "Cerrar una publicación"},
-    {"id": 12, "accion": "Suspender a un usuario"},
-    {"id": 13, "accion": "Verificar una respuesta"},
-    {"id": 14, "accion": "Autorizar una publicación"}
+    {"id": 11, "accion": "Cerró una publicación"},
+    {"id": 12, "accion": "Suspendió a un usuario"},
+    {"id": 13, "accion": "Verificó una respuesta"},
+    {"id": 14, "accion": "Agregó una publicación a FAQ"},
+    {"id": 15, "accion": "Agregó una pregunta a FAQ"},
+    {"id": 16, "accion": "Eliminó una pregunta de FAQ"},
+    {"id": 17, "accion": "Modificó una pregunta de FAQ"}
   ]
 }
