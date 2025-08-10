@@ -7,11 +7,42 @@ const User = require('../Models/User');
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
 const registrarAccion = require('../Logic/registrarAccion');
 
-// Obtener todos los posts aceptados con información del usuario basica
+// Obtener posts o un post específico
 router.get('/', async (req, res) => {
-    try {
-        const posts = await Post.find({ verified: true });
+    const { post_id, verified } = req.body;  // Recibiendo post_id y verified desde el body
 
+    try {
+        if (post_id) {
+            const post = await Post.findById(post_id);
+            if (!post) {
+                return res.status(404).json({ success: false, message: 'Post no encontrado' });
+            }
+            const user = await User.findById(post.usuario_id);
+            const date = new Date(post.fecha_publicacion);
+
+            return res.json({
+                post_id: post._id,
+                apodo: user ? user.apodo : 'Desconocido',
+                titulo: post.titulo,
+                contenido: post.contenido,
+                pub_date: DateMX(date),
+                pub_time: TimeMX(date),
+                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
+            });
+        }
+
+        const query = {};
+        if (verified !== undefined) {
+            if (verified === 'true' || verified === 'false') {
+                query.verified = verified === 'true';
+            } else {
+                return res.status(400).json({ success: false, message: "Parámetro 'verified' debe ser true o false" });
+            }
+        } else {
+            query.verified = true;
+        }
+
+        const posts = await Post.find(query);
         const postDetails = await Promise.all(posts.map(async (post) => {
             const user = await User.findById(post.usuario_id);
             const date = new Date(post.fecha_publicacion);
@@ -28,32 +59,6 @@ router.get('/', async (req, res) => {
 
         res.json(postDetails);
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ success: false, message: 'Error en el servidor' });
-    }
-});
-
-// Obtener un post específico con información extendida
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const post = await Post.findById(id);
-        if (!post) {
-            return res.status(404).json({ success: false, message: 'Post no encontrado' });
-        }
-        const user = await User.findById(post.usuario_id);
-        const date = new Date(post.fecha_publicacion);
-
-        res.json({
-            post_id: post._id,
-            apodo: user ? user.apodo : 'Desconocido',
-            titulo: post.titulo,
-            contenido: post.contenido,
-            pub_date: DateMX(date),
-            pub_time: TimeMX(date),
-            respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0
-        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Error en el servidor' });
