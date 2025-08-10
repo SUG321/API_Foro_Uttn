@@ -48,7 +48,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"apodo\": \"Juan Carrión\",\n  \"email\": \"Juan.Carranza@uttn.mx\",\n  \"contraseña\": \"ContraseñaHash\"\n}"
+							"raw": "{\n  \"apodo\": \"Juan Carrión2\",\n  \"email\": \"Juan.Carranza2@uttn.mx\",\n  \"contraseña\": \"ContraseñaHash\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/register",
@@ -69,9 +69,28 @@
 			"item": [
 				{
 					"name": "Listar Posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_id",
+									"value": "{{postId}}",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "verified",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{base_url}}/posts",
 							"host": [
@@ -79,24 +98,18 @@
 							],
 							"path": [
 								"posts"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Detalle de Post",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/posts/{{postId}}",
-							"host": [
-								"{{base_url}}"
 							],
-							"path": [
-								"posts",
-								"{{postId}}"
+							"query": [
+								{
+									"key": "post_id",
+									"value": "{{postId}}",
+									"disabled": true
+								},
+								{
+									"key": "verified",
+									"value": "false",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -160,6 +173,10 @@
 					"request": {
 						"method": "DELETE",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
 						"url": {
 							"raw": "{{base_url}}/posts/{{postId}}",
 							"host": [
@@ -168,6 +185,13 @@
 							"path": [
 								"posts",
 								"{{postId}}"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -192,6 +216,13 @@
 								"posts",
 								"{{postId}}",
 								"responses"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -209,7 +240,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"contenido\": \"respuesta\"\n}"
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"contenido\": \"respuesta epica numero 2\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/posts/{{postId}}/responses",
@@ -315,16 +346,38 @@
 				},
 				{
 					"name": "Listar Usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "{{userId}}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"url": {
-							"raw": "{{base_url}}/users",
+							"raw": "{{base_url}}/users/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"users"
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -343,32 +396,6 @@
 							"path": [
 								"users",
 								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Crear Usuario",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"email\": \"nuevo@uttn.mx\",\n  \"contraseña\": \"pass\"\n}"
-						},
-						"url": {
-							"raw": "{{base_url}}/users",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"users"
 							]
 						}
 					},
@@ -452,9 +479,28 @@
 				},
 				{
 					"name": "Listar Acciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_id",
+									"value": "{{postId}}",
+									"type": "text"
+								},
+								{
+									"key": "verified",
+									"value": "false",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"url": {
 							"raw": "{{base_url}}/actions",
 							"host": [
