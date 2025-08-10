@@ -52,9 +52,9 @@ router.post('/register', async (req, res) => {
         const newUser = new User({
             apodo,
             email,
-            contraseña: contraseña, // Guardar la contraseña encriptada
-            admin: false, // Usuario no es admin por defecto
-            perfil: { biografia: "", foto_perfil: "" }, // Perfil vacío por defecto
+            contraseña: contraseña,
+            admin: false,
+            perfil: { biografia: "Individuo", foto_perfil: "0" }, // Perfil vacío por defecto
             fecha_registro: Date.now()
         });
 

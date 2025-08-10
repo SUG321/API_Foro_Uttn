@@ -27,6 +27,8 @@
     { "id": 19, "accion": "Eliminó una pregunta de FAQ" },
     { "id": 20, "accion": "Modificó una pregunta de FAQ" },
     { "id": 21, "accion": "Otorgo permisos de administrador" },
-    { "id": 22, "accion": "Revoco permisos de administrador" }
+    { "id": 22, "accion": "Revoco permisos de administrador" },
+    
+    { "id": 23, "accion": "Eliminó su cuenta" }
   ]
 }
