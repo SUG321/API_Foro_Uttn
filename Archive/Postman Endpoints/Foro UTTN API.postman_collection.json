@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "6b5d202c-a489-48de-90dc-2c791daa890c",
-		"name": "Foro UTTN API",
+		"_postman_id": "8162a394-07a9-4543-86d4-61a2a599a507",
+		"name": "Foro UTTN API 2",
 		"description": "Colección de endpoints para la API del Foro UTTN",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "42620623"
@@ -521,6 +521,157 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "FAQs",
+			"item": [
+				{
+					"name": "Listar FAQs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener FAQ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener FAQ por Post verificado",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_id\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs/post/{{postId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear FAQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"titulo\": \"Pregunta de ejemplo\",\n  \"contenido\": \"Contenido de la pregunta\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar FAQ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Titulo actualizado\",\n  \"contenido\": \"Contenido actualizado\",\n  \"usuario_id\": \"{{userId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar FAQ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario_id\": \"{{userId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [
@@ -539,6 +690,14 @@
 		{
 			"key": "userId",
 			"value": "687306c7e350eeda607b24a2"
+		},
+		{
+			"key": "faqId",
+			"value": "507f1f77bcf86cd799439011"
+		},
+		{
+			"key": "faqId",
+			"value": "507f1f77bcf86cd799439011"
 		}
 	]
 }
