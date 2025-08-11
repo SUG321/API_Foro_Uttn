@@ -5,6 +5,7 @@ const Action = require('../Models/Action');
 const User = require('../Models/User');
 const Post = require('../Models/Post');
 const Response = require('../Models/Response');
+const Faq = require('../Models/FAQ');
 
 const registrarAccion = require('../Logic/registrarAccion');
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
@@ -46,6 +47,11 @@ router.get('/actions', async (req, res) => {
           const response = await Response.findById(action.objective_id);
           actionData.response_id = response._id;
           actionData.response_content = response.contenido;
+        }
+        if (action.objective_type === "Faq") {
+          const FaQ = await Faq.findById(action.objective_id);
+          actionData.Faq_id = FaQ._id;
+          actionData.Faq_content = FaQ.titulo;
         }
       }
 

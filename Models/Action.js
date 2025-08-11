@@ -6,7 +6,7 @@ const ActionSchema = new mongoose.Schema({
   details: { type: String },
   action_date: { type: Date },
   objective_id: { type: mongoose.Schema.Types.ObjectId, refPath: 'objective_type' },
-  objective_type: { type: String, enum: ['User', 'Post', 'Response'] } // vinculado a tus modelos
+  objective_type: { type: String, enum: ['User', 'Post', 'Response', 'Faq'] } // vinculado a tus modelos
 });
 
 

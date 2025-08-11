@@ -22,10 +22,12 @@
     { "id": 14, "accion": "Suspendió a un usuario" },
     { "id": 15, "accion": "Verificó una respuesta" },
     { "id": 16, "accion": "Ocultó una respuesta" },
+
     { "id": 17, "accion": "Agregó una publicación a FAQ" },
     { "id": 18, "accion": "Agregó una pregunta a FAQ" },
     { "id": 19, "accion": "Eliminó una pregunta de FAQ" },
     { "id": 20, "accion": "Modificó una pregunta de FAQ" },
+    
     { "id": 21, "accion": "Otorgo permisos de administrador" },
     { "id": 22, "accion": "Revoco permisos de administrador" },
     
