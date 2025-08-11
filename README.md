@@ -49,6 +49,7 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 
 - `GET /faqs` lista todas las preguntas frecuentes.
 - `GET /faqs/:id` obtiene una pregunta frecuente específica.
+- `GET /faqs/post/:postId` obtiene el título de una publicación y su respuesta verificada.
 - `POST /faqs` crea una nueva pregunta frecuente.
 - `PUT /faqs/:id` actualiza una pregunta frecuente existente.
 - `DELETE /faqs/:id` elimina una pregunta frecuente.

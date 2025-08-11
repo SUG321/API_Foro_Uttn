@@ -79,6 +79,7 @@ router.put('/responses/:id', async (req, res) => {
 // Eliminar una respuesta
 router.delete('/responses/:id', async (req, res) => {
     const { id } = req.params;
+    const { usuario_id } = req.body;
     try {
         const deleted = await Response.findByIdAndDelete(id);
         if (!deleted) {

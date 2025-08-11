@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const Faq = require('../Models/FAQ');
+const Post = require('../Models/Post');
+const Response = require('../Models/Response');
 
 const registrarAccion = require('../Logic/registrarAccion');
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
@@ -58,6 +60,36 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// Obtener FAQ a partir de un post con respuesta verificada
+router.get('/post/:postId', async (req, res) => {
+  const { postId } = req.params;
+  const { usuario_id } = req.body;
+  try {
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ success: false, message: 'Post no encontrado' });
+    }
+
+    const verifiedResponse = await Response.findOne({ pregunta_id: postId, verified: true });
+    if (!verifiedResponse) {
+      return res.status(404).json({ success: false, message: 'No existe una respuesta verificada' });
+    }
+
+    res.json({
+      titulo: post.titulo,
+      contenido: verifiedResponse.contenido
+    });
+
+    const newFaq = new Faq({ usuario_id, titulo, contenido });
+    await newFaq.save();
+
+    registrarAccion(usuario_id, 17, "Agregó una publicación a FAQ", newFaq._id, "Faq");
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Error en el servidor' });
+  }
+});
+
 // Crear una nueva FAQ
 router.post('/', async (req, res) => {
   const { usuario_id, titulo, contenido } = req.body;
@@ -74,7 +106,7 @@ router.post('/', async (req, res) => {
 
 // Actualizar una FAQ existente
 router.put('/:id', async (req, res) => {
-  const { id } = req.params;
+  const { id, usuario_id } = req.params;
   try {
     const updated = await Faq.findByIdAndUpdate(id, req.body, { new: true });
     if (!updated) {
@@ -90,7 +122,7 @@ router.put('/:id', async (req, res) => {
 
 // Eliminar una FAQ
 router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+  const { id, usuario_id } = req.params;
   try {
     const deleted = await Faq.findByIdAndDelete(id);
     if (!deleted) {

@@ -157,7 +157,7 @@ router.delete('/users/:id', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
     }
     res.json({ success: true, message: 'Usuario eliminado' });
-    registrarAccion(id, "Eliminó su cuenta", id, "User");
+    registrarAccion(id, 23, "Eliminó su cuenta", id, "User");
 
   } catch (err) {
     console.error(err);
