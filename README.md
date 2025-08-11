@@ -45,6 +45,14 @@ El comando anterior usa **nodemon** para cargar `server.js` y recargar automáti
 - `PUT /responses/:id` actualiza una respuesta existente.
 - `DELETE /responses/:id` elimina una respuesta.
 
+## Endpoints de FAQ
+
+- `GET /faqs` lista todas las preguntas frecuentes.
+- `GET /faqs/:id` obtiene una pregunta frecuente específica.
+- `POST /faqs` crea una nueva pregunta frecuente.
+- `PUT /faqs/:id` actualiza una pregunta frecuente existente.
+- `DELETE /faqs/:id` elimina una pregunta frecuente.
+
 ## Endpoints de usuarios y acciones
 
 - `GET /users` lista todos los usuarios.

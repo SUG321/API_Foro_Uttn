@@ -10,6 +10,7 @@ const postsRoutes = require('./routes/posts');
 const responsesRoutes = require('./routes/responses');
 const usersRoutes = require('./routes/users');
 const actionsRoutes = require('./routes/actions');
+const faqsRoutes = require('./routes/faqs');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/posts', postsRoutes);     // Endpoints de Posts
 app.use('/', responsesRoutes);      // Endpoints de Respuestas
 app.use('/', usersRoutes);          // Endpoints de Usuarios
 app.use('/', actionsRoutes);        // Endpoints de Acciones
+app.use('/faqs', faqsRoutes);       // Endpoints de FAQ
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
