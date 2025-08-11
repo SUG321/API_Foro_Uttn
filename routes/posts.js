@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
 
             return res.json({
                 post_id: post._id,
+                user_id: user ? user._id : 'Desconocido',
                 apodo: user ? user.apodo : 'Desconocido',
                 titulo: post.titulo,
                 contenido: post.contenido,
@@ -53,6 +54,7 @@ router.get('/', async (req, res) => {
 
             return {
                 post_id: post._id,
+                user_id: user ? user._id : 'Desconocido',
                 apodo: user ? user.apodo : 'Desconocido',
                 titulo: post.titulo,
                 contenido: post.contenido,
