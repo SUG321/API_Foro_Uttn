@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Post = require('../Models/Post');
 const User = require('../Models/User');
+const Response = require('../Models/Response');
 
 const { DateMX, TimeMX } = require('../Logic/dateFormatting');
 const registrarAccion = require('../Logic/registrarAccion');
@@ -18,6 +19,7 @@ router.get('/', async (req, res) => {
             }
             const user = await User.findById(post.usuario_id);
             const date = new Date(post.fecha_publicacion);
+            const responsesCount = await Response.countDocuments({ pregunta_id: post._id });
 
             return res.json({
                 post_id: post._id,
@@ -26,7 +28,7 @@ router.get('/', async (req, res) => {
                 contenido: post.contenido,
                 pub_date: DateMX(date),
                 pub_time: TimeMX(date),
-                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0,
+                respuestas: responsesCount,
                 mensaje_admin: post.mensaje_admin
             });
         }
@@ -47,6 +49,7 @@ router.get('/', async (req, res) => {
         const postDetails = await Promise.all(posts.map(async (post) => {
             const user = await User.findById(post.usuario_id);
             const date = new Date(post.fecha_publicacion);
+            const responsesCount = await Response.countDocuments({ pregunta_id: post._id });
 
             return {
                 post_id: post._id,
@@ -55,7 +58,7 @@ router.get('/', async (req, res) => {
                 contenido: post.contenido,
                 pub_date: DateMX(date),
                 pub_time: TimeMX(date),
-                respuestas: Array.isArray(post.respuestas) ? post.respuestas.length : 0,
+                respuestas: responsesCount,
                 mensaje_admin: post.mensaje_admin
             };
         }));
