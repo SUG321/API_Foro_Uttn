@@ -22,7 +22,7 @@ router.get('/actions', async (req, res) => {
     const formattedActions = await Promise.all(actions.map(async (action) => {
       const user = await User.findById(action.user_id);
       const date = new Date(action.action_date);
-      
+
       let actionData = {
         action_user: user.apodo,
         action_user_id: user._id,
@@ -35,29 +35,45 @@ router.get('/actions', async (req, res) => {
       if (action.objective_type) {
         if (action.objective_type === "Post") {
           const post = await Post.findById(action.objective_id);
-          actionData.post_id = post._id;
-          actionData.titulo = post.titulo;
+          if (post) {
+            actionData.post_id = post._id || 'Este campo fue borrado';
+            actionData.titulo = post.titulo || 'Este campo fue borrado';
+          } else {
+            actionData.objective = 'Este post fue eliminado';
+          }
         }
         if (action.objective_type === "User") {
-          const userObjective = await User.findById(action.objective_id); 
-          actionData.user_id = userObjective._id;
-          actionData.apodo = userObjective.apodo;
+          const userObjective = await User.findById(action.objective_id);
+          if (userObjective) {
+            actionData.user_id = userObjective._id || 'Este campo fue borrado';
+            actionData.apodo = userObjective.apodo || 'Este campo fue borrado';
+          } else {
+            actionData.objective = 'Este usuario fue eliminado';
+          }
         }
         if (action.objective_type === "Response") {
           const response = await Response.findById(action.objective_id);
-          actionData.response_id = response._id;
-          actionData.response_content = response.contenido;
+          if (response) {
+            actionData.response_id = response._id || 'Este campo fue borrado';
+            actionData.response_content = response.contenido || 'Este campo fue borrado';
+          } else {
+            actionData.objective = 'Esta respuesta fue eliminada';
+          }
         }
         if (action.objective_type === "Faq") {
           const FaQ = await Faq.findById(action.objective_id);
-          actionData.Faq_id = FaQ._id;
-          actionData.Faq_content = FaQ.titulo;
+          if (FaQ) {
+            actionData.Faq_id = FaQ._id || 'Este campo fue borrado';
+            actionData.Faq_content = FaQ.titulo || 'Este campo fue borrado';
+          } else {
+            actionData.objective = 'Esta pregunta fue eliminada';
+          }
         }
       }
 
-      return actionData; 
+      return actionData;
     }));
-    
+
     res.json(formattedActions);
   } catch (err) {
     console.error(err);

@@ -521,6 +521,136 @@
           "response": []
         }
       ]
+      },
+		{
+			"name": "FAQs",
+			"item": [
+				{
+					"name": "Listar FAQs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener FAQ",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener FAQ por Post verificado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs/post/{{postId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"post",
+								"{{postId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear FAQ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"usuario_id\": \"{{userId}}\",\n  \"titulo\": \"Pregunta de ejemplo\",\n  \"contenido\": \"Contenido de la pregunta\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar FAQ",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"titulo\": \"Titulo actualizado\",\n  \"contenido\": \"Contenido actualizado\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar FAQ",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/faqs/{{faqId}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"faqs",
+								"{{faqId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
     },
     {
       "name": "FAQs",
@@ -654,6 +784,10 @@
     {
       "key": "faqId",
       "value": "507f1f77bcf86cd799439011"
+    },
+		{
+			"key": "faqId",
+			"value": "507f1f77bcf86cd799439011"
     }
   ]
 }

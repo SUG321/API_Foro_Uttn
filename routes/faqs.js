@@ -75,14 +75,16 @@ router.get('/post/:postId', async (req, res) => {
       return res.status(404).json({ success: false, message: 'No existe una respuesta verificada' });
     }
 
+    const newFaq = new Faq({ 
+      usuario_id, 
+      titulo: post.titulo, 
+      contenido: verifiedResponse.contenido });
+    await newFaq.save();
+    
     res.json({
       titulo: post.titulo,
       contenido: verifiedResponse.contenido
     });
-
-    const newFaq = new Faq({ usuario_id, titulo, contenido });
-    await newFaq.save();
-
     registrarAccion(usuario_id, 17, "Agregó una publicación a FAQ", newFaq._id, "Faq");
   } catch (err) {
     console.error(err);
@@ -106,14 +108,14 @@ router.post('/', async (req, res) => {
 
 // Actualizar una FAQ existente
 router.put('/:id', async (req, res) => {
-  const { id, usuario_id } = req.params;
+  const { id } = req.params;
   try {
     const updated = await Faq.findByIdAndUpdate(id, req.body, { new: true });
     if (!updated) {
       return res.status(404).json({ success: false, message: 'FAQ no encontrada' });
     }
     res.json({ success: true });
-    registrarAccion(usuario_id, 20, "Modificó una pregunta de FAQ", "Faq");
+    registrarAccion(req.body.usuario_id, 20, "Modificó una pregunta de FAQ", "Faq");
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, message: 'Error en el servidor' });
@@ -122,7 +124,8 @@ router.put('/:id', async (req, res) => {
 
 // Eliminar una FAQ
 router.delete('/:id', async (req, res) => {
-  const { id, usuario_id } = req.params;
+  const { id } = req.params;
+  const { usuario_id } = req.body;
   try {
     const deleted = await Faq.findByIdAndDelete(id);
     if (!deleted) {
